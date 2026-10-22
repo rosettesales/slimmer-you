@@ -43,3 +43,9 @@ The hosted Site is currently owner-private. Search engines cannot index pages be
 `/home-light` is a second, Apple-inspired design using a bright neutral palette, system sans-serif typography, translucent navigation, blue pill buttons and large treatment panels. The original homepage stays at `/`. The alternate includes the same booking form and backend, service-detail dialogs, treatment preselection, the journal, directions and motion controls. Booking-only rendering lives in the existing `Spa` component so validation, receipts and privacy behavior stay shared.
 
 The alternate is marked `noindex, follow`, canonicalizes to `/`, and is intentionally excluded from the sitemap while both versions are available for review. If this design becomes the main homepage, move it to `/` and use the main homepage's indexable metadata. This is a visual interpretation for the spa; it uses no Apple logos or product imagery.
+
+## Luxe homepage
+
+`/home-luxe` is a third homepage based on the original plum-and-ivory palette. It adds an edge-to-edge photographic hero with a slow zoom, pointer-reactive SVG rosettes and botanical outlines, light motes, a rotating seal, and translucent overlays. An accessible treatment tab list supports arrow keys, Home and End, and carries the selected service into the shared booking flow. Motion can be paused and follows the system reduced-motion preference. The original and light editions remain at `/` and `/home-light`.
+
+Like the other alternate, `/home-luxe` is `noindex, follow`, uses `/` as its canonical and is omitted from the sitemap until a primary design is chosen. Graphics are authored SVG/CSS; existing photos are reused.
