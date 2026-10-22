@@ -37,3 +37,9 @@ The `/blog` journal contains four original guides, each with a dedicated `/blog/
 `app/seo.tsx` centralizes the canonical origin and business identity. Pages provide unique titles and descriptions, canonical URLs, Open Graph and Twitter images, and JSON-LD for the spa, journal, articles and breadcrumbs. No ratings, prices or verified opening hours are fabricated. `/sitemap.xml` lists the homepage, journal and every article; `/robots.txt` points to the sitemap and excludes booking API/auth routes. Missing articles return a 404 with noindex metadata.
 
 The hosted Site is currently owner-private. Search engines cannot index pages behind sign-in, even with this metadata. Localhost is also not publicly crawlable. A public launch and public production domain are needed for organic search visibility. When a custom domain is connected, update `SITE_URL` in `app/seo.tsx`, republish, and submit the sitemap through that domain's verified Google Search Console property. No Search Console submission or ranking guarantee is implied by this implementation.
+
+## Alternate homepage
+
+`/home-light` is a second, Apple-inspired design using a bright neutral palette, system sans-serif typography, translucent navigation, blue pill buttons and large treatment panels. The original homepage stays at `/`. The alternate includes the same booking form and backend, service-detail dialogs, treatment preselection, the journal, directions and motion controls. Booking-only rendering lives in the existing `Spa` component so validation, receipts and privacy behavior stay shared.
+
+The alternate is marked `noindex, follow`, canonicalizes to `/`, and is intentionally excluded from the sitemap while both versions are available for review. If this design becomes the main homepage, move it to `/` and use the main homepage's indexable metadata. This is a visual interpretation for the spa; it uses no Apple logos or product imagery.
