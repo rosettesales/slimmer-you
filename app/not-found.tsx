@@ -1,0 +1,2 @@
+import { BlogHeader, BlogFooter } from './blog/components';
+export default function NotFound() { return <><BlogHeader/><main id="main" className="journal-hero not-found"><p className="eyebrow">404 / A LITTLE DETOUR</p><h1>This page has<br/><em>stepped away.</em></h1><p>Let’s get you back to a little self-care.</p><a className="button" href="/blog">Explore the journal ↗</a><a className="text-link" href="/">Back to the spa</a></main><BlogFooter/></>; }

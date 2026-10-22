@@ -29,3 +29,11 @@ Business name and phone are supported by the supplied Instagram account and the 
 Editorial images are served locally from Unsplash source images `photo-1570172619644-dfd03ed5d881`, `photo-1544161515-4ab6ce6db874` and `photo-1608571423902-eed4a5ad8108`. The privacy notice distinguishes editorial and business photographs. Google Fonts supplies the webfonts, with local serif/sans-serif fallbacks.
 
 The user specified appointment requests and provisional 9 a.m.–5 p.m. hours. No customer testimonials, treatment outcomes, prices or discounts have been invented.
+
+## Journal and search metadata
+
+The `/blog` journal contains four original guides, each with a dedicated `/blog/[slug]` route, reading time, publication date, table of contents, related articles and booking links. Article content and navigation are rendered on the server and remain readable without JavaScript. Edit `app/blog/posts.ts` to add or revise articles, and update their dates only when the content changes. Health-related factual statements link to AAD, NCCIH or FDA sources; the articles do not promise outcomes or imply practitioner credentials.
+
+`app/seo.tsx` centralizes the canonical origin and business identity. Pages provide unique titles and descriptions, canonical URLs, Open Graph and Twitter images, and JSON-LD for the spa, journal, articles and breadcrumbs. No ratings, prices or verified opening hours are fabricated. `/sitemap.xml` lists the homepage, journal and every article; `/robots.txt` points to the sitemap and excludes booking API/auth routes. Missing articles return a 404 with noindex metadata.
+
+The hosted Site is currently owner-private. Search engines cannot index pages behind sign-in, even with this metadata. Localhost is also not publicly crawlable. A public launch and public production domain are needed for organic search visibility. When a custom domain is connected, update `SITE_URL` in `app/seo.tsx`, republish, and submit the sitemap through that domain's verified Google Search Console property. No Search Console submission or ranking guarantee is implied by this implementation.

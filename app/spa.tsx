@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { ArrowUpRight, ArrowRight, ArrowDown, ChevronLeft, ChevronRight, Check, Plus, Minus, Menu, X, MapPin, Phone, Camera as Instagram, Leaf, Sparkles, Pause, Play, Heart, CalendarDays } from 'lucide-react';
 import { services, times, torontoNow, lastBookingDate, validSlot, prettyTime, prettyDate } from './booking-data';
 
@@ -16,7 +16,7 @@ function Flower({ className = '' }: { className?: string }) {
   return <svg className={className} viewBox="0 0 100 100" fill="none" aria-hidden="true"><g stroke="currentColor" strokeWidth="1.2">{[0,45,90,135].map(r => <ellipse key={r} cx="50" cy="50" rx="14" ry="46" transform={'rotate('+r+' 50 50)'} />)}<circle cx="50" cy="50" r="8" /></g></svg>;
 }
 
-export default function Spa() {
+export default function Spa({journal}:{journal?:ReactNode}) {
   const [menu,setMenu]=useState(false);
   const [paused,setPaused]=useState(false);
   const [activeCategory,setActiveCategory]=useState('All experiences');
@@ -87,7 +87,7 @@ export default function Spa() {
     <header className="header">
       <a className="wordmark" href="#" aria-label="Slimmer You & Pamper Spa home"><span>slimmer you<span className="wordmark-flower">✳</span></span><small>& PAMPER SPA</small></a>
       <nav className={menu?'nav is-open':'nav'} aria-label="Main navigation">
-        {[['Treatments','#treatments'],['The experience','#experience'],['Visit us','#visit']].map(([label,url])=><a key={url} href={url} onClick={()=>setMenu(false)}>{label}</a>)}
+        {[['Treatments','#treatments'],['The experience','#experience'],['The journal','/blog'],['Visit us','#visit']].map(([label,url])=><a key={url} href={url} onClick={()=>setMenu(false)}>{label}</a>)}
         <a className="mobile-book" href="#booking" onClick={()=>setMenu(false)}>Book your moment <ArrowUpRight size={16}/></a>
       </nav>
       <div className="header-actions"><button className="motion-toggle" aria-label={paused?'Enable animations':'Pause animations'} title={paused?'Enable animations':'Pause animations'} onClick={()=>setPaused(!paused)}>{paused?<Play size={15}/>:<Pause size={15}/>}</button><a className="button nav-book" href="#booking">Book your moment <ArrowUpRight size={16}/></a><button className="menu-toggle" aria-label={menu?'Close menu':'Open menu'} aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></div>
@@ -95,7 +95,7 @@ export default function Spa() {
     <main id="main">
       <section className="hero">
         <div className="hero-copy">
-          <div className="eyebrow hero-enter"><span className="tiny-star">✳</span> YOUR EVERYDAY, ELEVATED</div>
+          <div className="eyebrow hero-enter"><span className="tiny-star">✳</span> SPA & BODY CARE IN HAMILTON, ONTARIO</div>
           <h1><span>A little pause.</span><span>A whole new</span><span className="last-line"><em>you.</em><span className="hero-flower"><Flower/></span></span></h1>
           <p className="hero-description hero-enter">Less rush. More radiance. Body, skin and soul care<br className="desktop-break"/> that brings you back to yourself.</p>
           <div className="hero-buttons hero-enter"><a className="button" href="#booking">Make time for you <ArrowUpRight size={19}/></a><a className="text-link" href="#treatments">Explore treatments <ArrowDown size={15}/></a></div>
@@ -145,6 +145,8 @@ export default function Spa() {
       </section>
 
       <section className="faq-section section" data-reveal><div><p className="eyebrow">A FEW THINGS TO KNOW</p><h2>A little clarity.<br/><em>A lot more calm.</em></h2><a className="text-link" href="tel:+13658330170">Talk to our team <ArrowUpRight size={18}/></a></div><div className="faqs">{faqs.map(([q,a],i)=><div className={'faq '+(openFaq===i?'expanded':'')} key={q}><button aria-expanded={openFaq===i} aria-controls={'faq-'+i} onClick={()=>setOpenFaq(openFaq===i?null:i)}>{q}{openFaq===i?<Minus size={18}/>:<Plus size={18}/>}</button><div id={'faq-'+i} className="faq-answer" hidden={openFaq!==i}><p>{a}</p></div></div>)}</div></section>
+
+      {journal}
 
       <section className="visit-section" id="visit"><div className="visit-photo"><img src="/images/our-spa.jpg" alt="A gathering at Slimmer You & Pamper Spa in Hamilton" loading="lazy"/><a href={ig} target="_blank" rel="noreferrer"><Instagram size={18}/>A little look inside <ArrowUpRight size={19}/></a></div><div className="visit-copy" data-reveal><p className="eyebrow">04 / YOUR NEIGHBOURHOOD ESCAPE</p><h2>A little closer<br/>to <em>feeling good.</em></h2><p>Find us on Upper Wellington Street.<br/>Your moment of calm is waiting.</p><div className="visit-details"><div><span>FIND YOUR WAY</span><a href={maps} target="_blank" rel="noreferrer">609 Upper Wellington Street<br/>Hamilton, ON L9A 3P8 <ArrowUpRight size={16}/></a></div><div><span>LET’S CONNECT</span><a href="tel:+13658330170">365 833 0170</a><a href={ig} target="_blank" rel="noreferrer">@slimmeryoupamperspa</a></div></div><a className="button" href={maps} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={19}/></a></div></section>
       <section className="last-cta"><p className="eyebrow">YOU DESERVE TO FEEL GOOD.</p><a href="#booking">Shall we make<br/><em>time for you?</em><span><ArrowUpRight strokeWidth={1}/></span></a></section>
